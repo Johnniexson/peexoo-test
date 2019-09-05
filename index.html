@@ -1,0 +1,418 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
+  <title>Peexoo</title>
+</head>
+<body>
+  <div id="app">
+    <div class="sidebar">
+      <img src="./assets/images/Asset 7.png" alt="logo">
+      <a><i class="far fa-chart-bar">&nbsp;</i>Dashboard</a>
+      <a><i class="far fa-user">&nbsp;</i>Profile</a>
+      <a><i class="fas fa-cube">&nbsp;</i>Pricing Package</a>
+      <a><i class="far fa-calendar-alt">&nbsp;</i>Availability</a>
+      <a><i class="fas fa-camera">&nbsp;</i>Bookings</a>
+      <a><i class="fas fa-briefcase">&nbsp;</i>Portfolio</a>
+      <a><i class="fas fa-images">&nbsp;</i>Albums</a>
+      <a><i class="fas fa-shopping-bag">&nbsp;</i>Subscriptions</a>
+      <a><i class="fas fa-credit-card">&nbsp;</i>Payment</a>
+      <a><i class="fas fa-cog">&nbsp;</i>Settings</a>
+      <p>© 2019 Peexoo Technologies</p>
+    </div>
+    <div class="main">
+      <div class="toolbar">
+        <div class="container">
+          <span>Explore photos</span>
+          <span>Find a photographer</span>
+          <span><i class="far fa-file-alt"></i></span>
+          <span><i class="far fa-bell"></i></span>
+          <span><i class="far fa-envelope"></i></span>
+          <span>
+            <img src="./assets/images/16179814_10206798683520198_56085875509784801_o.png" alt="profile-img" align="middle">&nbsp;<span>{{profile.name}}</span>
+        </span>
+        <span><i class="fas fa-chevron-down"></i></span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="container">
+            <p class="h_txt">Availability</p>
+            <p>
+              <div class="left-item">
+                <a><i class="far fa-calendar-alt">&nbsp;</i>Calendar view</a>
+                <a><i class="fas fa-list-ul">&nbsp;</i>List view</a>
+              </div>
+              <div class="right-item">
+                <span class="search">
+                  <span><i class="fas fa-search"></i></span>
+                  <input type="text" placeholder=" Search">
+                </span>
+                <span><button>+ADD SCHEDULE</button></span>
+              </div>
+            </p>
+            <p class="month">
+              <span><i class="fas fa-caret-left"></i>&nbsp;<i class="fas fa-caret-right"></i></span>
+              <span class="txt">{{month.string + " " + year}}</span>
+              <span><button>Today</button></span>
+            </p>
+            <p>
+              <div class="days">
+                <div class="day">SUN</div>
+                <div class="day">MON</div>
+                <div class="day">TUE</div>
+                <div class="day">WED</div>
+                <div class="day">THU</div>
+                <div class="day">FRI</div>
+                <div class="day">SAT</div>
+              </div>
+              <div class="dates"></div>
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- css styles -->
+  <style>
+    body {
+      margin: 0;
+      width: 1440px;
+      height: 1220px;
+    }
+    #app {
+      display: inline-flex;
+    }
+    .sidebar {
+      position: relative;
+      background-color: #4D4D4D;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+      width: 322px;
+      height: 1220px;
+    }
+    .sidebar img {
+      width: 148px;
+      height: 38px;
+      padding: 30px 0 58px 65px;
+    }
+    .sidebar a {
+      cursor: pointer;
+      color: #D4D4D4;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17px;
+      text-align: left;
+      display: block;
+      padding: 35px 0 28px 69px
+    }
+    .sidebar a:hover {
+      background-color: #5C5C5C;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+      color: #FFB603;
+      border-left: 10px solid #FFB603;
+      padding: 35px 0 28px 59px
+    }
+    .sidebar p {
+      position: absolute;
+      color: #FFFFFF;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 30px;
+      width: 175px;
+      text-align: left;
+      left: 63px;
+      bottom: 41px;
+    }
+    .main {
+      width: 1118px;
+      height: 1220px;
+    }
+    .toolbar {
+      text-align: right;
+      background-color: #FFFDF9;
+      width: 1118px;
+      height: 97px;
+    }
+    .toolbar .container {
+      padding-top: 18px;
+      box-shadow: 0 1px 4px 0 rgba(204, 204, 204, 0.5);
+    }
+    .toolbar .container > span {
+      margin-right: 30px;
+      color: #4D4D4D;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17px;
+      text-align: left;
+    }
+    .toolbar .container img {
+      width: 62px;
+      /* height: 110px; */
+    }
+    .content {
+      background-color: #FFFDF7;
+      width: 1118px;
+      height: 1123px;
+    }
+    .content .container {
+      padding: 50px 52px 0 40px;
+    }
+    .content .container .h_txt {
+      color: #4D4D4D;
+      font-family: Lora;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 29px;
+      text-align: left;
+    }
+    /* .content .container .left-item {
+      overflow: auto;
+    } */
+    .left-item a {
+      cursor: pointer;
+      color: #B58000;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 19px;
+      width: 103px;
+      text-align: left;
+      padding-right: 20px;
+    }
+    .content .container .right-item {
+      text-align: right;
+    }
+    .content .container .right-item > span {
+      padding-left: 20px;
+    }
+    .right-item .search {
+      position: relative;
+      margin: 0;
+      text-align: center;
+    }
+    .right-item .search .fa-search {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+      color: #D4D4D4;
+      font-size: 14px;
+    }
+    .right-item span input {
+      background-color: #FFFEFC;
+      border: 1px solid #D4D4D4;
+      border-radius: 5px;
+      width: 375px;
+      height: 41px;
+    }
+    .right-item span button {
+      cursor: pointer;
+      background-color: #FFB603;
+      border-radius: 5px;
+      width: 171px;
+      height: 43px;
+      color: #FFFFFF;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17px;
+      width: 134px;
+      text-align: center;
+    }
+    .month span {
+      padding-right: 11px;
+    }
+    .month .txt {
+      color: #4D4D4D;
+      font-family: Montserrat;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 22px;
+      text-align: left;
+    }
+    .month button {
+      cursor: pointer;
+      background-color: #FFFDF9;
+      border: 1px solid #FFB603;
+      border-radius: 5px;
+      width: 84px;
+      height: 31px;
+      color: #FFB603;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 17px;
+      text-align: center
+    }
+    .days, .dates {
+      display: grid;
+      grid-template-columns: auto auto auto auto auto auto auto;
+    }
+    .days .day {
+      background-color: #FFFFFF;
+      border: 1px solid #D4D4D4;
+      border-radius: 2px;
+      width: 145px;
+      height: 48px;
+      color: #4D4D4D;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dates .date {
+      background-color: #FFFFFF;
+      border: 1px solid #D4D4D4;
+      border-radius: 2px;
+      width: 145px;
+      height: 123px;
+      color: #4D4D4D;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dates .event {
+      background-color: #FFF3D4;
+      border: 1px solid #D4D4D4;
+      border-radius: 2px;
+      width: 144px;
+      height: 113px;
+      padding-top: 10px;
+      text-align: center;
+      color: #4D4D4D;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 14px;
+    }
+  </style>
+
+  <!-- vue scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        // NOTE: month number is btw 0-11 i.e for January - December where January == 0 && December == 11
+        month: {
+          string: 'September',
+          number: 8
+        },
+        year: 2019,
+        profile: {
+          name: 'Oghenetega'
+        },
+        events: [
+          {
+            title: 'Mrs. Steven daughter’s wedding photography',
+            start_date: 2,
+            end_date: 2,
+          },
+          {
+            title: 'Mrs. Peter daughter’s wedding photography',
+            start_date: 11,
+            end_date: 13,
+          },
+          {
+            title: 'Mrs. Steven daughter’s wedding photography',
+            start_date: 28,
+            end_date: 28,
+          }
+        ],
+        daysInMonth(month, year) {
+          return new Date(year, month, 0).getDate();
+        },
+        firstDayOfMonth(month, year) {
+          return new Date(year, month, 1).getDay();
+        }
+      },
+      created() {
+        this.formatCalender();
+      },
+      methods: {
+        formatCalender() {
+          let dates = document.querySelector('.dates');
+          let d = this.daysInMonth(this.month.number, this.year);
+          let day = this.firstDayOfMonth(this.month.number, this.year);
+          // console.log(d, day);
+          function createEmptyCell() {
+            var date = document.createElement("div");
+            date.className = "date";
+            var textnode = document.createTextNode("");
+            date.appendChild(textnode);
+            dates.appendChild(date);
+          }
+          // empty cells before actual dates
+          for(var i = day; i > 0; i--) {
+            createEmptyCell();
+          }
+          // actual dates
+          for(var i = 1; i < d; i++) {
+            const event = this.events.find(event => event.start_date === i);
+            if (event) {
+              var date = document.createElement("div");
+              let styles = `
+              background-color: #FFB603;
+              border: 1px solid #D4D4D4;
+              border-radius: 2px;
+              width: 124px;
+              height: 80px;
+              color: #FFFFFF;
+              font-family: Montserrat;
+              font-size: 12px;
+              font-weight: 400;
+              line-height: 14px;
+              margin: auto;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              `
+              date.className = "event";
+              var textnode_date = document.createTextNode(`${i}`);
+              var event_box = document.createElement("p");
+              event_box.style = styles;
+              var textnode_event = document.createTextNode(`${event.title}`);
+              date.appendChild(textnode_date);
+              event_box.appendChild(textnode_event);
+              date.appendChild(event_box);
+              dates.appendChild(date);
+            } else {
+              var date = document.createElement("div");
+              date.className = "date";
+              var textnode = document.createTextNode(`${i}`);
+              date.appendChild(textnode);
+              dates.appendChild(date);
+            }
+          };
+          // empty cells after actual dates
+          let t_days = d+day;
+          if(t_days < 35) {
+            for(var i = d+day ; i <= 35; i++) {
+              createEmptyCell();
+            }
+          } else {
+            for(var i = d+day ; i <= 42; i++) {
+              createEmptyCell();
+            }
+          }
+        },
+      }
+    })
+  </script>
+</body>
+</html>
